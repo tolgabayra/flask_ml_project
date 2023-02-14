@@ -24,13 +24,20 @@ class UserService:
             return False
 
     @staticmethod
-    def update():
-        db.session.commit()
+    def update_user(id, data):
+        record = User.query.get(id)
+        if record:
+            for key, value in data.items():
+                setattr(record,key,value)
+                db.session.commit()
+                return True
+        else:
+            return False
 
     @staticmethod
     def show_user(id):
         return User.query.get(id)
 
     @staticmethod
-    def list_user(self):
+    def list_user():
         return User.query.all()
