@@ -1,5 +1,6 @@
 from flask import request, jsonify, Blueprint
 from service.user_service import UserService
+from middleware.jwt_required import jwt_required
 
 user_controller = Blueprint("users", __name__)
 
@@ -30,6 +31,7 @@ def update_user(id):
 
 
 @user_controller.route("users", methods=["GET"])
+@jwt_required
 def list_user():
     records = UserService.list_user()
     return jsonify([records.to_dict() for record in records]), 200

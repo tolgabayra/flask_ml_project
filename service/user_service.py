@@ -3,8 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 class UserService:
+    #     @staticmethod
+    #     def create_user(user_dto: UserCreateDTO):
+    #         user = User(name=user_dto.name, email=user_dto.email)
+    #         db.session.add(user)
+    #         db.session.commit()
+    #         return user
 
     @staticmethod
     def create_user(name: str, email: str):
